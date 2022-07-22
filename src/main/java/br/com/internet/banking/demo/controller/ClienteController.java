@@ -3,6 +3,8 @@ package br.com.internet.banking.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,8 +29,10 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarCliente(@RequestBody ClienteDTO cliente) {
+	public ResponseEntity<String> cadastrarCliente(@RequestBody ClienteDTO cliente) {
 		this.clientService.cadastrarCliente(cliente);
+		
+		return ResponseEntity.status(HttpStatus.OK).body("OK");
 	}
 	
 }

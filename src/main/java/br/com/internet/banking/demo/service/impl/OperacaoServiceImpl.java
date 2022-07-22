@@ -24,11 +24,7 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 		Cliente cliente = optionalCliente.get();
 		Long saldoAtual = cliente.getSaldo().longValue();
-
-		if (cliente.getPlanoExclusive()) {
-			cliente.setSaldo(BigDecimal.valueOf(saldoAtual).subtract(BigDecimal.valueOf(valorSaque)));
-		}
-		
+	
 		if(cliente.getPlanoExclusive() && valorSaque <= 100)
 			cliente.setSaldo(cliente.getSaldo().subtract(BigDecimal.valueOf(valorSaque)));
 			
